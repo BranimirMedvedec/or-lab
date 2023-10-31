@@ -1,0 +1,1 @@
+docker exec -u root lab1 mongoexport --db=lab1DB --collection=sports_clubs --username=bmedvedec --password=lozinka --authenticationDatabase=admin --type=csv --fields="Naziv kluba","Godina osnutka","Adresa","Telefon/fax","E-mail","Web mjesto","Ovlaštena osoba1","OBI","Registarski broj","Datum unosa/izmjene","Član RSS","Sport.Naziv" > novi_csv.csv

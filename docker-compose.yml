@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+    lab1:
+        image: branimirmedvedec/orlabosi:v1
+        container_name: lab1
+        restart: unless-stopped
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: bmedvedec
+            MONGO_INITDB_ROOT_PASSWORD: lozinka
+        ports:
+            - 27017:27017
+        volumes:
+            - ./lab1volume:/data/db
