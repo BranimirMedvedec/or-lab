@@ -2,8 +2,8 @@ version: '2.0'
 
 services:
   mongo:
-    image: branimirmedvedec/orlabosi:v2
-    container_name: or-lab2-mongo
+    image: branimirmedvedec/orlabosi:v2-db
+    container_name: or-db
     restart: unless-stopped
     environment:
       MONGO_INITDB_ROOT_USERNAME: bmedvedec

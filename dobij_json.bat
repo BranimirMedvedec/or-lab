@@ -1,1 +1,1 @@
-docker exec -u root lab1 mongoexport --db=lab1DB --collection=sports_clubs --username=bmedvedec --password=lozinka --authenticationDatabase=admin --type=json > novi_json.json
+docker exec -u root or-db mongoexport --db=orlabDB --collection=clubs --username=bmedvedec --password=lozinka --authenticationDatabase=admin --type=json > novi_json.json
