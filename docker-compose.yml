@@ -1,13 +1,23 @@
-version: "3.8"
+version: '2.0'
+
 services:
-    lab1:
-        image: branimirmedvedec/orlabosi:v1
-        container_name: lab1
-        restart: unless-stopped
-        environment:
-            MONGO_INITDB_ROOT_USERNAME: bmedvedec
-            MONGO_INITDB_ROOT_PASSWORD: lozinka
-        ports:
-            - 27017:27017
-        volumes:
-            - ./lab1volume:/data/db
+  mongo:
+    image: branimirmedvedec/orlabosi:v2
+    container_name: or-lab2-mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: bmedvedec
+      MONGO_INITDB_ROOT_PASSWORD: lozinka
+    ports:
+      - 27017:27017
+    volumes:
+      - ./labvolume:/data/db
+  app:
+    image: branimirmedvedec/orlabosi:v2-app
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: "0.0.0.0"
+      container_name: or-lab2-app
