@@ -1,0 +1,775 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Sports Clubs API",
+		"description": "API for Sports Clubs",
+		"version": "1.0.0",
+		"contact": {
+			"name": "Branimir Medvedec",
+			"email": "branimir.medvedec@fer.hr"
+		},
+		"license": {
+			"name": "MIT",
+			"url": "https://opensource.org/licenses/MIT"
+		}
+	},
+	"components": {
+		"schemas": {
+			"Club": {
+				"type": "object",
+				"properties": {
+					"Naziv kluba": {
+						"type": "string",
+						"example": "Teniski klub Zagreb",
+						"description": "Naziv kluba"
+					},
+					"Godina osnutka": {
+						"type": "integer",
+						"format": "int32",
+						"example": "2010",
+						"description": "Godina osnutka"
+					},
+					"Adresa": {
+						"type": "string",
+						"example": "Zagreb, Ilica 1",
+						"description": "Adresa"
+					},
+					"Telefon/fax": {
+						"type": "string",
+						"example": "01/123-4567",
+						"description": "Telefon/fax"
+					},
+					"E-mail": {
+						"type": "string",
+						"example": "club@gmail.com",
+						"description": "E-mail"
+					},
+					"Web mjesto": {
+						"type": "string",
+						"example": "www.club.com",
+						"description": "Web mjesto"
+					},
+					"Ovlaštena osoba1": {
+						"type": "string",
+						"example": "Ivan Horvat",
+						"description": "Ovlaštena osoba1"
+					},
+					"OIB": {
+						"type": "string",
+						"example": "12345678901",
+						"description": "OIB"
+					},
+					"Registarski broj": {
+						"type": "string",
+						"example": "12345678901",
+						"description": "Registarski broj"
+					},
+					"Datum unosa/izmjene": {
+						"type": "string",
+						"format": "date",
+						"example": "2020-10-30",
+						"description": "Datum unosa/izmjene"
+					},
+					"Član RSS": {
+						"type": "string",
+						"example": "true or false",
+						"description": "Član RSS"
+					},
+					"Sportovi": {
+						"type": "array",
+						"example": ["Tenis", "Nogomet"],
+						"description": "Sportovi u kojima klub djeluje",
+						"items": {
+							"type": "string",
+							"example": "Tenis",
+							"description": "Sport"
+						}
+					}
+				},
+				"required": [
+					"Naziv kluba",
+					"Godina osnutka",
+					"Adresa",
+					"Telefon/fax",
+					"E-mail",
+					"Web mjesto",
+					"Ovlaštena osoba1",
+					"OIB",
+					"Registarski broj",
+					"Datum unosa/izmjene",
+					"Član RSS",
+					"Sportovi"
+				]
+			},
+			"ClubCreatedResponse": {
+				"type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"enum": ["Club created successfully"]
+					},
+					"insertedId": {
+						"type": "string"
+					}
+				},
+				"required": ["message", "insertedId"]
+			},
+			"ClubDeletedResponse": {
+				"type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"enum": ["Club deleted successfully"]
+					}
+				},
+				"required": ["message"]
+			},
+			"ClubModifySuccessResponse": {
+				"type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"enum": ["Club modified successfully"]
+					}
+				},
+				"required": ["message"]
+			},
+			"ClubBadRequestResponse": {
+				"type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"enum": ["Bad request"]
+					}
+				},
+				"required": ["message"]
+			},
+			"ClubNotFoundResponse": {
+				"type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"enum": ["Club not found"]
+					}
+				},
+				"required": ["message"]
+			},
+			"ClubInternalServerErrorResponse": {
+				"type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"enum": [
+							"Error occurred while trying to process the request"
+						]
+					}
+				},
+				"required": ["message"]
+			},
+			"CreateClubMissingFieldsResponse": {
+				"type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"enum": ["Invalid request or missing required fields"]
+					}
+				},
+				"required": ["message"]
+			}
+		}
+	},
+	"paths": {
+		"/api/getClubs": {
+			"get": {
+				"tags": ["Clubs"],
+				"summary": "Finds all clubs",
+				"description": "Get a list of all clubs",
+				"responses": {
+					"200": {
+						"description": "Fetched all clubs successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/Club"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubBadRequestResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Clubs not found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubNotFoundResponse"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal server error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubInternalServerErrorResponse"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/getClub/{id}": {
+			"get": {
+				"tags": ["Clubs"],
+				"summary": "Finds club by ID",
+				"description": "Get a club by ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "Club Id",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"format": "ObjectId",
+							"example": "5f9d4b9a9d6b9b1b1c9d6b9b"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Fetched club successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Club"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubBadRequestResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Club not found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubNotFoundResponse"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal server error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubInternalServerErrorResponse"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/getClubsBySport/{sport}": {
+			"get": {
+				"tags": ["Clubs"],
+				"summary": "Finds clubs by sport",
+				"description": "Get a list of clubs by sport",
+				"parameters": [
+					{
+						"name": "sport",
+						"in": "path",
+						"description": "Club sport",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"example": "Tenis"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Fetched clubs successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"description": "List of clubs",
+									"items": {
+										"$ref": "#/components/schemas/Club"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubBadRequestResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Club not found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubNotFoundResponse"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal server error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubInternalServerErrorResponse"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/getClubsByYear/{year}": {
+			"get": {
+				"tags": ["Clubs"],
+				"summary": "Finds clubs by year of establishment",
+				"description": "Get a list of clubs by their year of establishment",
+				"parameters": [
+					{
+						"name": "year",
+						"in": "path",
+						"description": "Club year",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"format": "int32",
+							"example": "2010"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Fetched clubs successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"description": "List of clubs",
+									"items": {
+										"$ref": "#/components/schemas/Club"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubBadRequestResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Club not found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubNotFoundResponse"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal server error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubInternalServerErrorResponse"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/getClubsByYearRange/{range}": {
+			"get": {
+				"tags": ["Clubs"],
+				"summary": "Finds clubs by range of years of establishment",
+				"description": "Get a list of clubs by their range of years of establishment",
+				"parameters": [
+					{
+						"name": "range",
+						"in": "path",
+						"description": "Club year range",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"example": "2010-2015"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Fetched clubs successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"description": "List of clubs",
+									"items": {
+										"$ref": "#/components/schemas/Club"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubBadRequestResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Club not found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubNotFoundResponse"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal server error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubInternalServerErrorResponse"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/getRandomClub": {
+			"get": {
+				"tags": ["Clubs"],
+				"summary": "Finds random club",
+				"description": "Get a random club",
+				"responses": {
+					"200": {
+						"description": "Fetched club successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Club"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubBadRequestResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Club not found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubNotFoundResponse"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal server error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubInternalServerErrorResponse"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/createClub": {
+			"post": {
+				"tags": ["Clubs"],
+				"summary": "Creates a new club",
+				"description": "Create a new club",
+				"requestBody": {
+					"description": "Club data to be added",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Club"
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Club created successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubCreatedResponse"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid request or missing required fields",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CreateClubMissingFieldsResponse"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal server error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubInternalServerErrorResponse"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/deleteClub/{id}": {
+			"delete": {
+				"tags": ["Clubs"],
+				"summary": "Deletes a club by ID",
+				"description": "Delete a club by ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "Id of the club to be deleted",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"format": "ObjectId",
+							"example": "5f9d4b9a9d6b9b1b1c9d6b9b"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Club deleted successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubDeletedResponse"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubBadRequestResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Club not found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubNotFoundResponse"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal server error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubInternalServerErrorResponse"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/modifyClub/{id}": {
+			"put": {
+				"tags": ["Clubs"],
+				"summary": "Modifies a club by ID",
+				"description": "Modify values of attributes of a club by ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "Id of the club to be modified",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"format": "ObjectId",
+							"example": "5f9d4b9a9d6b9b1b1c9d6b9b"
+						}
+					}
+				],
+				"requestBody": {
+					"description": "Club data to be modified",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Club"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Club modified successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubModifySuccessResponse"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubBadRequestResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Club not found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubNotFoundResponse"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal server error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubInternalServerErrorResponse"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/getApiSpec": {
+			"get": {
+				"tags": ["Api Specification"],
+				"summary": "Finds API specification",
+				"description": "Get API specification in JSON format",
+				"responses": {
+					"200": {
+						"description": "Fetched API specification successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "string",
+									"example": "JSON API specification"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubBadRequestResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Club not found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubNotFoundResponse"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal server error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubInternalServerErrorResponse"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
