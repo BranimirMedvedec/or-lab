@@ -1,0 +1,544 @@
+{
+	"$schema": "https://json-schema.org/draft/2019-09/schema",
+	"$id": "http://example.com/example.json",
+	"type": "array",
+	"default": [],
+	"title": "Root Schema",
+	"description": "Root Schema",
+	"items": {
+		"type": "object",
+		"title": "A Schema",
+		"description": "A Schema",
+		"required": [
+			"_id",
+			"Naziv kluba",
+			"Godina osnutka",
+			"Adresa",
+			"Telefon/fax",
+			"E-mail",
+			"Web mjesto",
+			"Ovlaštena osoba1",
+			"OIB",
+			"Registarski broj",
+			"Datum unosa/izmjene",
+			"Član RSS",
+			"Sportovi"
+		],
+		"properties": {
+			"_id": {
+				"type": "string",
+				"title": "The _id Schema",
+				"description": "Unique identifier for the club",
+				"examples": [
+					"65410fc2116d5e5293a8e0a5",
+					"65410fc2116d5e5293a8e0ab",
+					"65410fc2116d5e5293a8e0a8",
+					"65410fc2116d5e5293a8e0ac",
+					"65410fc2116d5e5293a8e0ad",
+					"65410fc2116d5e5293a8e0ae",
+					"65410fc2116d5e5293a8e0a6",
+					"65410fc2116d5e5293a8e0a7",
+					"65410fc2116d5e5293a8e0a9",
+					"65410fc2116d5e5293a8e0aa"
+				]
+			},
+			"Naziv kluba": {
+				"type": "string",
+				"title": "The Naziv kluba Schema",
+				"description": "Name of the club",
+				"examples": [
+					"Klub Rijeka",
+					"Šahovski klub “Rijeka”",
+					"Klub “Kvarner”",
+					"Klub “Pećine”",
+					"Ski klub “Rijeka“",
+					"Ženski klub “Kozala”- brisana iz registra",
+					"Ženski klub “Zamet“",
+					"Klub “Nine“",
+					"Ženski klub “Vita”",
+					"Klub “Sušak”"
+				]
+			},
+			"Godina osnutka": {
+				"type": "integer",
+				"title": "The Godina osnutka Schema",
+				"description": "Year of foundation of the club",
+				"examples": [
+					2010, 2009, 1979, 1994, 1965, 1993, 1995, 2004, 2000
+				]
+			},
+			"Adresa": {
+				"type": "string",
+				"title": "The Adresa Schema",
+				"description": "Address of the club",
+				"examples": [
+					"Milice Jadranić 9/b, Rijeka",
+					"Rijeka, Blaža Polića 2/II",
+					"Rijeka, Ede Jardasa 27 a",
+					"Rijeka, Šetalište XIII divizije 33",
+					"Rijeka, Vodovodna 13 b",
+					"Rijeka, Volčićev trg 2",
+					"Rijeka, Bože Vidasa b.b.",
+					"Rijeka, Škurinjskih žrtava 18",
+					"Rijeka, Omladinska 8",
+					"Rijeka, Radnička 4/a"
+				]
+			},
+			"Telefon/fax": {
+				"type": "string",
+				"title": "The Telefon/fax Schema",
+				"description": "Phone number of the club",
+				"examples": [
+					"091/5744872, 098/9826557",
+					"336-781/332-628",
+					"621-601/621-444",
+					"421-782, 098-697-485/421-782",
+					"371-054/371-054",
+					"513-799",
+					"313-253/313-253",
+					"091-782-0410",
+					"513-116, 091-154-5081",
+					"219-197"
+				]
+			},
+			"E-mail": {
+				"type": "string",
+				"title": "The E-mail Schema",
+				"description": "E-mail address of the club",
+				"examples": [
+					"rijeka.kendo@gmail.com#mailto:rijeka.kendo@gmail.com#",
+					"club@sah-rijeka.hr#mailto:club@sah-rijeka.hr#",
+					"tenis-klub-kvarner@ri.t-com.hr#mailto:tenis-klub-kvarner@ri.t-com.hr#",
+					"jdjukic@optinet.hr#mailto:jdjukic@optinet.hr#",
+					"ski-rijeka@ri.t-com.hr#mailto:ski-rijeka@ri.t-com.hr#",
+					"info@tkkozala.hr",
+					"zrk.zamet@rss.hr#mailto:zrk.zamet@rss.hr#",
+					"info@snowboard-nine.hr#mailto: info@snowboard-nine.hr#",
+					"zgkvitari@net.hr#mailto:zgkvitari@net.hr#",
+					"tksusak@gmail.com#mailto:tksusak@gmail.com#"
+				]
+			},
+			"Web mjesto": {
+				"type": "string",
+				"title": "The Web mjesto Schema",
+				"description": "Web site of the club",
+				"examples": [
+					"www.rijekakendo.com",
+					"http://www.sah-rijeka.hr/",
+					"http://www.tkk.hr/",
+					"http://www.tkpecine.com/",
+					"http://www.ski-rijeka.hr/",
+					"http://www.tkkozala.hr/",
+					"http://www.zamet.hr/",
+					"http://www.snowboard-nine.hr/",
+					"http://www.vitagimnastika.hr/",
+					"http://www.tk-susak.hr/"
+				]
+			},
+			"Ovlaštena osoba1": {
+				"type": "string",
+				"title": "The Ovlaštena osoba1 Schema",
+				"description": "Name of the person in charge of the club",
+				"examples": [
+					"Marko Vejvoda (predsjednik)",
+					"Boris Golubović (predsjednik)  098-328-903",
+					"Bruno Grbac (predsjednik)  091-353-7790",
+					"Ivan Blažević (predsjednik)  091-240-4888",
+					"Davor Štimac (predsjednik) 091-501-9332",
+					"Marija Tamaro (predsjednica)  091-507-8225",
+					"Luka Denona (predsjednik)  313-253",
+					"Miodrag Toskić (predsjednik)  091-782-0410",
+					"Katja Luketić (predsjednica)  091-525-6589",
+					"Marko Troskot (predsjednik)  091-545-4618"
+				]
+			},
+			"OIB": {
+				"type": "string",
+				"title": "The OIB Schema",
+				"description": "OIB of the club",
+				"examples": [
+					"83733322513",
+					"34680581451",
+					"5572634799",
+					"32511798489",
+					"79176245106",
+					"91937547330",
+					"90910170888",
+					"11358291864",
+					"16130367714",
+					"08502484580"
+				]
+			},
+			"Registarski broj": {
+				"type": "integer",
+				"title": "The Registarski broj Schema",
+				"description": "Registration number of the club",
+				"examples": [
+					8003172, 8003136, 8001245, 8000555, 8001139, 8000927,
+					8000248, 8002017, 8001398, 8001971
+				]
+			},
+			"Datum unosa/izmjene": {
+				"type": "string",
+				"title": "The Datum unosa/izmjene Schema",
+				"description": "Date of entry/change of the club",
+				"examples": [
+					"2015-11-17T00:00:00",
+					"2015-11-18T00:00:00",
+					"2015-11-19T00:00:00"
+				]
+			},
+			"Član RSS": {
+				"type": "string",
+				"title": "The Član RSS Schema",
+				"description": "Is the club a member of the Riječki Sportski Savez",
+				"examples": ["false"]
+			},
+			"Sportovi": {
+				"type": "array",
+				"title": "The Sportovi Schema",
+				"description": "Sports that the club is engaged in",
+				"items": {
+					"type": "string",
+					"title": "A Schema",
+					"examples": [
+						"KENDO",
+						"IAIDO",
+						"ŠAH",
+						"BRIDŽ",
+						"TENIS",
+						"STOLNI TENIS",
+						"SKIJANJE",
+						"SNOWBOARD",
+						"BOĆANJE",
+						"BOĆANJE NA TRAVI",
+						"RUKOMET",
+						"ODBOJKA",
+						"GIMNASTIKA",
+						"AKROBATIKA",
+						"TAEKWONDO",
+						"KARATE"
+					]
+				},
+				"examples": [
+					["KENDO", "IAIDO"],
+					["ŠAH", "BRIDŽ"],
+					["TENIS", "STOLNI TENIS"],
+					["TENIS", "STOLNI TENIS"],
+					["SKIJANJE", "SNOWBOARD"],
+					["BOĆANJE", "BOĆANJE NA TRAVI"],
+					["RUKOMET", "ODBOJKA"],
+					["SKIJANJE", "SNOWBOARD"],
+					["GIMNASTIKA", "AKROBATIKA"],
+					["TAEKWONDO", "KARATE"]
+				]
+			}
+		},
+		"examples": [
+			{
+				"_id": "65410fc2116d5e5293a8e0a5",
+				"Naziv kluba": "Klub Rijeka",
+				"Godina osnutka": 2010,
+				"Adresa": "Milice Jadranić 9/b, Rijeka",
+				"Telefon/fax": "091/5744872, 098/9826557",
+				"E-mail": "rijeka.kendo@gmail.com#mailto:rijeka.kendo@gmail.com#",
+				"Web mjesto": "www.rijekakendo.com",
+				"Ovlaštena osoba1": "Marko Vejvoda (predsjednik)",
+				"OIB": "83733322513",
+				"Registarski broj": 8003172,
+				"Datum unosa/izmjene": "2015-11-17T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["KENDO", "IAIDO"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0ab",
+				"Naziv kluba": "Šahovski klub “Rijeka”",
+				"Godina osnutka": 2009,
+				"Adresa": "Rijeka, Blaža Polića 2/II",
+				"Telefon/fax": "336-781/332-628",
+				"E-mail": "club@sah-rijeka.hr#mailto:club@sah-rijeka.hr#",
+				"Web mjesto": "http://www.sah-rijeka.hr/",
+				"Ovlaštena osoba1": "Boris Golubović (predsjednik)  098-328-903",
+				"OIB": "34680581451",
+				"Registarski broj": 8003136,
+				"Datum unosa/izmjene": "2015-11-18T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["ŠAH", "BRIDŽ"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0a8",
+				"Naziv kluba": "Klub “Kvarner”",
+				"Godina osnutka": 1979,
+				"Adresa": "Rijeka, Ede Jardasa 27 a",
+				"Telefon/fax": "621-601/621-444",
+				"E-mail": "tenis-klub-kvarner@ri.t-com.hr#mailto:tenis-klub-kvarner@ri.t-com.hr#",
+				"Web mjesto": "http://www.tkk.hr/",
+				"Ovlaštena osoba1": "Bruno Grbac (predsjednik)  091-353-7790",
+				"OIB": "5572634799",
+				"Registarski broj": 8001245,
+				"Datum unosa/izmjene": "2015-11-17T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["TENIS", "STOLNI TENIS"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0ac",
+				"Naziv kluba": "Klub “Pećine”",
+				"Godina osnutka": 1994,
+				"Adresa": "Rijeka, Šetalište XIII divizije 33",
+				"Telefon/fax": "421-782, 098-697-485/421-782",
+				"E-mail": "jdjukic@optinet.hr#mailto:jdjukic@optinet.hr#",
+				"Web mjesto": "http://www.tkpecine.com/",
+				"Ovlaštena osoba1": "Ivan Blažević (predsjednik)  091-240-4888",
+				"OIB": "32511798489",
+				"Registarski broj": 8000555,
+				"Datum unosa/izmjene": "2015-11-17T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["TENIS", "STOLNI TENIS"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0ad",
+				"Naziv kluba": "Ski klub “Rijeka“",
+				"Godina osnutka": 1965,
+				"Adresa": "Rijeka, Vodovodna 13 b",
+				"Telefon/fax": "371-054/371-054",
+				"E-mail": "ski-rijeka@ri.t-com.hr#mailto:ski-rijeka@ri.t-com.hr#",
+				"Web mjesto": "http://www.ski-rijeka.hr/",
+				"Ovlaštena osoba1": "Davor Štimac (predsjednik) 091-501-9332",
+				"OIB": "79176245106",
+				"Registarski broj": 8001139,
+				"Datum unosa/izmjene": "2015-11-18T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["SKIJANJE", "SNOWBOARD"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0ae",
+				"Naziv kluba": "Ženski klub “Kozala”- brisana iz registra",
+				"Godina osnutka": 1993,
+				"Adresa": "Rijeka, Volčićev trg 2",
+				"Telefon/fax": "513-799",
+				"E-mail": "info@tkkozala.hr",
+				"Web mjesto": "http://www.tkkozala.hr/",
+				"Ovlaštena osoba1": "Marija Tamaro (predsjednica)  091-507-8225",
+				"OIB": "91937547330",
+				"Registarski broj": 8000927,
+				"Datum unosa/izmjene": "2015-11-19T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["BOĆANJE", "BOĆANJE NA TRAVI"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0a6",
+				"Naziv kluba": "Ženski klub “Zamet“",
+				"Godina osnutka": 1995,
+				"Adresa": "Rijeka, Bože Vidasa b.b.",
+				"Telefon/fax": "313-253/313-253",
+				"E-mail": "zrk.zamet@rss.hr#mailto:zrk.zamet@rss.hr#",
+				"Web mjesto": "http://www.zamet.hr/",
+				"Ovlaštena osoba1": "Luka Denona (predsjednik)  313-253",
+				"OIB": "90910170888",
+				"Registarski broj": 8000248,
+				"Datum unosa/izmjene": "2015-11-18T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["RUKOMET", "ODBOJKA"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0a7",
+				"Naziv kluba": "Klub “Nine“",
+				"Godina osnutka": 2004,
+				"Adresa": "Rijeka, Škurinjskih žrtava 18",
+				"Telefon/fax": "091-782-0410",
+				"E-mail": "info@snowboard-nine.hr#mailto: info@snowboard-nine.hr#",
+				"Web mjesto": "http://www.snowboard-nine.hr/",
+				"Ovlaštena osoba1": "Miodrag Toskić (predsjednik)  091-782-0410",
+				"OIB": "11358291864",
+				"Registarski broj": 8002017,
+				"Datum unosa/izmjene": "2015-11-18T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["SKIJANJE", "SNOWBOARD"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0a9",
+				"Naziv kluba": "Ženski klub “Vita”",
+				"Godina osnutka": 2000,
+				"Adresa": "Rijeka, Omladinska 8",
+				"Telefon/fax": "513-116, 091-154-5081",
+				"E-mail": "zgkvitari@net.hr#mailto:zgkvitari@net.hr#",
+				"Web mjesto": "http://www.vitagimnastika.hr/",
+				"Ovlaštena osoba1": "Katja Luketić (predsjednica)  091-525-6589",
+				"OIB": "16130367714",
+				"Registarski broj": 8001398,
+				"Datum unosa/izmjene": "2015-11-18T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["GIMNASTIKA", "AKROBATIKA"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0aa",
+				"Naziv kluba": "Klub “Sušak”",
+				"Godina osnutka": 2004,
+				"Adresa": "Rijeka, Radnička 4/a",
+				"Telefon/fax": "219-197",
+				"E-mail": "tksusak@gmail.com#mailto:tksusak@gmail.com#",
+				"Web mjesto": "http://www.tk-susak.hr/",
+				"Ovlaštena osoba1": "Marko Troskot (predsjednik)  091-545-4618",
+				"OIB": "08502484580",
+				"Registarski broj": 8001971,
+				"Datum unosa/izmjene": "2015-11-17T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["TAEKWONDO", "KARATE"]
+			}
+		]
+	},
+	"examples": [
+		[
+			{
+				"_id": "65410fc2116d5e5293a8e0a5",
+				"Naziv kluba": "Klub Rijeka",
+				"Godina osnutka": 2010,
+				"Adresa": "Milice Jadranić 9/b, Rijeka",
+				"Telefon/fax": "091/5744872, 098/9826557",
+				"E-mail": "rijeka.kendo@gmail.com#mailto:rijeka.kendo@gmail.com#",
+				"Web mjesto": "www.rijekakendo.com",
+				"Ovlaštena osoba1": "Marko Vejvoda (predsjednik)",
+				"OIB": "83733322513",
+				"Registarski broj": 8003172,
+				"Datum unosa/izmjene": "2015-11-17T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["KENDO", "IAIDO"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0ab",
+				"Naziv kluba": "Šahovski klub “Rijeka”",
+				"Godina osnutka": 2009,
+				"Adresa": "Rijeka, Blaža Polića 2/II",
+				"Telefon/fax": "336-781/332-628",
+				"E-mail": "club@sah-rijeka.hr#mailto:club@sah-rijeka.hr#",
+				"Web mjesto": "http://www.sah-rijeka.hr/",
+				"Ovlaštena osoba1": "Boris Golubović (predsjednik)  098-328-903",
+				"OIB": "34680581451",
+				"Registarski broj": 8003136,
+				"Datum unosa/izmjene": "2015-11-18T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["ŠAH", "BRIDŽ"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0a8",
+				"Naziv kluba": "Klub “Kvarner”",
+				"Godina osnutka": 1979,
+				"Adresa": "Rijeka, Ede Jardasa 27 a",
+				"Telefon/fax": "621-601/621-444",
+				"E-mail": "tenis-klub-kvarner@ri.t-com.hr#mailto:tenis-klub-kvarner@ri.t-com.hr#",
+				"Web mjesto": "http://www.tkk.hr/",
+				"Ovlaštena osoba1": "Bruno Grbac (predsjednik)  091-353-7790",
+				"OIB": "5572634799",
+				"Registarski broj": 8001245,
+				"Datum unosa/izmjene": "2015-11-17T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["TENIS", "STOLNI TENIS"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0ac",
+				"Naziv kluba": "Klub “Pećine”",
+				"Godina osnutka": 1994,
+				"Adresa": "Rijeka, Šetalište XIII divizije 33",
+				"Telefon/fax": "421-782, 098-697-485/421-782",
+				"E-mail": "jdjukic@optinet.hr#mailto:jdjukic@optinet.hr#",
+				"Web mjesto": "http://www.tkpecine.com/",
+				"Ovlaštena osoba1": "Ivan Blažević (predsjednik)  091-240-4888",
+				"OIB": "32511798489",
+				"Registarski broj": 8000555,
+				"Datum unosa/izmjene": "2015-11-17T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["TENIS", "STOLNI TENIS"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0ad",
+				"Naziv kluba": "Ski klub “Rijeka“",
+				"Godina osnutka": 1965,
+				"Adresa": "Rijeka, Vodovodna 13 b",
+				"Telefon/fax": "371-054/371-054",
+				"E-mail": "ski-rijeka@ri.t-com.hr#mailto:ski-rijeka@ri.t-com.hr#",
+				"Web mjesto": "http://www.ski-rijeka.hr/",
+				"Ovlaštena osoba1": "Davor Štimac (predsjednik) 091-501-9332",
+				"OIB": "79176245106",
+				"Registarski broj": 8001139,
+				"Datum unosa/izmjene": "2015-11-18T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["SKIJANJE", "SNOWBOARD"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0ae",
+				"Naziv kluba": "Ženski klub “Kozala”- brisana iz registra",
+				"Godina osnutka": 1993,
+				"Adresa": "Rijeka, Volčićev trg 2",
+				"Telefon/fax": "513-799",
+				"E-mail": "info@tkkozala.hr",
+				"Web mjesto": "http://www.tkkozala.hr/",
+				"Ovlaštena osoba1": "Marija Tamaro (predsjednica)  091-507-8225",
+				"OIB": "91937547330",
+				"Registarski broj": 8000927,
+				"Datum unosa/izmjene": "2015-11-19T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["BOĆANJE", "BOĆANJE NA TRAVI"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0a6",
+				"Naziv kluba": "Ženski klub “Zamet“",
+				"Godina osnutka": 1995,
+				"Adresa": "Rijeka, Bože Vidasa b.b.",
+				"Telefon/fax": "313-253/313-253",
+				"E-mail": "zrk.zamet@rss.hr#mailto:zrk.zamet@rss.hr#",
+				"Web mjesto": "http://www.zamet.hr/",
+				"Ovlaštena osoba1": "Luka Denona (predsjednik)  313-253",
+				"OIB": "90910170888",
+				"Registarski broj": 8000248,
+				"Datum unosa/izmjene": "2015-11-18T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["RUKOMET", "ODBOJKA"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0a7",
+				"Naziv kluba": "Klub “Nine“",
+				"Godina osnutka": 2004,
+				"Adresa": "Rijeka, Škurinjskih žrtava 18",
+				"Telefon/fax": "091-782-0410",
+				"E-mail": "info@snowboard-nine.hr#mailto: info@snowboard-nine.hr#",
+				"Web mjesto": "http://www.snowboard-nine.hr/",
+				"Ovlaštena osoba1": "Miodrag Toskić (predsjednik)  091-782-0410",
+				"OIB": "11358291864",
+				"Registarski broj": 8002017,
+				"Datum unosa/izmjene": "2015-11-18T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["SKIJANJE", "SNOWBOARD"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0a9",
+				"Naziv kluba": "Ženski klub “Vita”",
+				"Godina osnutka": 2000,
+				"Adresa": "Rijeka, Omladinska 8",
+				"Telefon/fax": "513-116, 091-154-5081",
+				"E-mail": "zgkvitari@net.hr#mailto:zgkvitari@net.hr#",
+				"Web mjesto": "http://www.vitagimnastika.hr/",
+				"Ovlaštena osoba1": "Katja Luketić (predsjednica)  091-525-6589",
+				"OIB": "16130367714",
+				"Registarski broj": 8001398,
+				"Datum unosa/izmjene": "2015-11-18T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["GIMNASTIKA", "AKROBATIKA"]
+			},
+			{
+				"_id": "65410fc2116d5e5293a8e0aa",
+				"Naziv kluba": "Klub “Sušak”",
+				"Godina osnutka": 2004,
+				"Adresa": "Rijeka, Radnička 4/a",
+				"Telefon/fax": "219-197",
+				"E-mail": "tksusak@gmail.com#mailto:tksusak@gmail.com#",
+				"Web mjesto": "http://www.tk-susak.hr/",
+				"Ovlaštena osoba1": "Marko Troskot (predsjednik)  091-545-4618",
+				"OIB": "08502484580",
+				"Registarski broj": 8001971,
+				"Datum unosa/izmjene": "2015-11-17T00:00:00",
+				"Član RSS": "false",
+				"Sportovi": ["TAEKWONDO", "KARATE"]
+			}
+		]
+	]
+}
