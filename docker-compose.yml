@@ -1,8 +1,8 @@
-version: '2.0'
+version: '3.0'
 
 services:
   mongo:
-    image: branimirmedvedec/orlabosi:v2-db
+    image: branimirmedvedec/orlabosi:v3-db
     container_name: or-db
     restart: unless-stopped
     environment:
@@ -13,11 +13,11 @@ services:
     volumes:
       - ./labvolume:/data/db
   app:
-    image: branimirmedvedec/orlabosi:v2-app
+    image: branimirmedvedec/orlabosi:v3-app
+    container_name: or-app
     ports:
       - "3000:3000"
     environment:
       NODE_ENV: production
       PORT: 3000
       HOSTNAME: "0.0.0.0"
-      container_name: or-lab2-app
