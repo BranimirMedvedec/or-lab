@@ -1,14 +1,14 @@
 import { MongoClient, ObjectId } from "mongodb"
 import { NextRequest } from "next/server"
 
-const uri =
-	"mongodb://bmedvedec:lozinka@mongo:27017/orlabDB?authSource=admin"
-const dbName = "orlabDB"
+const uri = process.env.MONGODB_URI
+const dbName = process.env.MONGODB_DB
 
 export async function GET(request: NextRequest) {
 	if (!uri) {
 		return new Response(
 			JSON.stringify({
+				status: 400,
 				message: "MongoDB URI is not set",
 			}),
 			{
@@ -23,6 +23,7 @@ export async function GET(request: NextRequest) {
 	if (!dbName) {
 		return new Response(
 			JSON.stringify({
+				status: 400,
 				message: "MongoDB DB name is not set",
 			}),
 			{
@@ -48,6 +49,7 @@ export async function GET(request: NextRequest) {
 		if (openApiSpec.length === 0)
 			return new Response(
 				JSON.stringify({
+					status: 404,
 					message: "OpenAPI spec not found",
 				}),
 				{
@@ -58,19 +60,27 @@ export async function GET(request: NextRequest) {
 				}
 			)
 
-		return new Response(JSON.stringify(openApiSpec[0]), {
-			status: 200,
-			headers: {
-				"content-type": "application/json",
-			},
-		})
+		return new Response(
+			JSON.stringify({
+				status: 200,
+				message: "OpenAPI spec found",
+				response: openApiSpec[0],
+			}),
+			{
+				status: 200,
+				headers: {
+					"content-type": "application/json",
+				},
+			}
+		)
 	} catch (e) {
 		return new Response(
 			JSON.stringify({
+				status: 400,
 				message: "Error getting OpenAPI spec",
 			}),
 			{
-				status: 500,
+				status: 400,
 				headers: {
 					"content-type": "application/json",
 				},

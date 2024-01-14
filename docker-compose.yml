@@ -1,8 +1,8 @@
-version: '3.0'
+version: '4.0'
 
 services:
   mongo:
-    image: branimirmedvedec/orlabosi:v3-db
+    image: branimirmedvedec/orlabosi:v4-db
     container_name: or-db
     restart: unless-stopped
     environment:
@@ -12,12 +12,20 @@ services:
       - 27017:27017
     volumes:
       - ./labvolume:/data/db
-  app:
-    image: branimirmedvedec/orlabosi:v3-app
+  backend:
+    image: branimirmedvedec/orlabosi:v4-app
     container_name: or-app
     ports:
       - "3000:3000"
     environment:
+      MONGODB_URI: mongodb://bmedvedec:lozinka@mongo:27017/orlabDB?authSource=admin
+      MONGODB_DB: orlabDB
+      FETCH_URL: "http://localhost:3000/api/clubs?dump=true"
+      AUTH0_SECRET: '2680d6f6ce345c77c4dce78a93739f625c9e13e7d355c1702c4e2c3c62e5d424'
+      AUTH0_BASE_URL: 'http://localhost:3000'
+      AUTH0_ISSUER_BASE_URL: 'https://dev-mbranimir.eu.auth0.com'
+      AUTH0_CLIENT_ID: 'V4R9x6F4YIQpmOpWqq9o1z6Ho7cbSlJV'
+      AUTH0_CLIENT_SECRET: 'UTug-4xjmUWfrHgkLeJJ6xfp_PRPHft3bFWxE2Ov-QcGHQv8xC2VRodae6Gm-QTM'
       NODE_ENV: production
       PORT: 3000
       HOSTNAME: "0.0.0.0"

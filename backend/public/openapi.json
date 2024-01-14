@@ -179,7 +179,7 @@
 		}
 	},
 	"paths": {
-		"/api/getClubs": {
+		"/api/clubs": {
 			"get": {
 				"tags": ["Clubs"],
 				"summary": "Finds all clubs",
@@ -231,69 +231,7 @@
 				}
 			}
 		},
-		"/api/getClub/{id}": {
-			"get": {
-				"tags": ["Clubs"],
-				"summary": "Finds club by ID",
-				"description": "Get a club by ID",
-				"parameters": [
-					{
-						"name": "id",
-						"in": "path",
-						"description": "Club Id",
-						"required": true,
-						"schema": {
-							"type": "string",
-							"format": "ObjectId",
-							"example": "5f9d4b9a9d6b9b1b1c9d6b9b"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Fetched club successfully",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/Club"
-								}
-							}
-						}
-					},
-					"400": {
-						"description": "Bad request",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ClubBadRequestResponse"
-								}
-							}
-						}
-					},
-					"404": {
-						"description": "Club not found",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ClubNotFoundResponse"
-								}
-							}
-						}
-					},
-					"500": {
-						"description": "Internal server error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ClubInternalServerErrorResponse"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/api/getClubsBySport/{sport}": {
+		"/api/clubs/sport/{sport}": {
 			"get": {
 				"tags": ["Clubs"],
 				"summary": "Finds clubs by sport",
@@ -358,7 +296,7 @@
 				}
 			}
 		},
-		"/api/getClubsByYear/{year}": {
+		"/api/clubs/year/{year}|{yearRange}": {
 			"get": {
 				"tags": ["Clubs"],
 				"summary": "Finds clubs by year of establishment",
@@ -374,73 +312,19 @@
 							"format": "int32",
 							"example": "2010"
 						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Fetched clubs successfully",
-						"content": {
-							"application/json": {
-								"schema": {
-									"type": "array",
-									"description": "List of clubs",
-									"items": {
-										"$ref": "#/components/schemas/Club"
-									}
-								}
-							}
-						}
 					},
-					"400": {
-						"description": "Bad request",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ClubBadRequestResponse"
-								}
-							}
-						}
-					},
-					"404": {
-						"description": "Club not found",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ClubNotFoundResponse"
-								}
-							}
-						}
-					},
-					"500": {
-						"description": "Internal server error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ClubInternalServerErrorResponse"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/api/getClubsByYearRange/{range}": {
-			"get": {
-				"tags": ["Clubs"],
-				"summary": "Finds clubs by range of years of establishment",
-				"description": "Get a list of clubs by their range of years of establishment",
-				"parameters": [
 					{
-						"name": "range",
+						"name": "yearRange",
 						"in": "path",
 						"description": "Club year range",
-						"required": true,
+						"optional": true,
 						"schema": {
 							"type": "string",
 							"example": "2010-2015"
 						}
 					}
 				],
+
 				"responses": {
 					"200": {
 						"description": "Fetched clubs successfully",
@@ -489,58 +373,9 @@
 				}
 			}
 		},
-		"/api/getRandomClub": {
-			"get": {
-				"tags": ["Clubs"],
-				"summary": "Finds random club",
-				"description": "Get a random club",
-				"responses": {
-					"200": {
-						"description": "Fetched club successfully",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/Club"
-								}
-							}
-						}
-					},
-					"400": {
-						"description": "Bad request",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ClubBadRequestResponse"
-								}
-							}
-						}
-					},
-					"404": {
-						"description": "Club not found",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ClubNotFoundResponse"
-								}
-							}
-						}
-					},
-					"500": {
-						"description": "Internal server error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ClubInternalServerErrorResponse"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/api/createClub": {
+		"/api/club": {
 			"post": {
-				"tags": ["Clubs"],
+				"tags": ["Club"],
 				"summary": "Creates a new club",
 				"description": "Create a new club",
 				"requestBody": {
@@ -587,9 +422,69 @@
 				}
 			}
 		},
-		"/api/deleteClub/{id}": {
+		"/api/club/{id}": {
+			"get": {
+				"tags": ["Club"],
+				"summary": "Finds club by ID",
+				"description": "Get a club by ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "Club Id",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"format": "ObjectId",
+							"example": "5f9d4b9a9d6b9b1b1c9d6b9b"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Fetched club successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Club"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubBadRequestResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Club not found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubNotFoundResponse"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal server error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubInternalServerErrorResponse"
+								}
+							}
+						}
+					}
+				}
+			},
 			"delete": {
-				"tags": ["Clubs"],
+				"tags": ["Club"],
 				"summary": "Deletes a club by ID",
 				"description": "Delete a club by ID",
 				"parameters": [
@@ -647,11 +542,9 @@
 						}
 					}
 				}
-			}
-		},
-		"/api/modifyClub/{id}": {
+			},
 			"put": {
-				"tags": ["Clubs"],
+				"tags": ["Club"],
 				"summary": "Modifies a club by ID",
 				"description": "Modify values of attributes of a club by ID",
 				"parameters": [
@@ -721,7 +614,56 @@
 				}
 			}
 		},
-		"/api/getApiSpec": {
+		"/api/club/random": {
+			"get": {
+				"tags": ["Club"],
+				"summary": "Finds random club",
+				"description": "Get a random club",
+				"responses": {
+					"200": {
+						"description": "Fetched club successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Club"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubBadRequestResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Club not found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubNotFoundResponse"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal server error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ClubInternalServerErrorResponse"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/specification": {
 			"get": {
 				"tags": ["Api Specification"],
 				"summary": "Finds API specification",

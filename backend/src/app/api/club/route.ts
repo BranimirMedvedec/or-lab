@@ -1,10 +1,9 @@
 import { Club } from "@/types/Club"
-import { MongoClient } from "mongodb"
+import { MongoClient, ObjectId } from "mongodb"
 import { NextRequest, NextResponse } from "next/server"
 
-const uri =
-	"mongodb://bmedvedec:lozinka@mongo:27017/orlabDB?authSource=admin"
-const dbName = "orlabDB"
+const uri = process.env.MONGODB_URI
+const dbName = process.env.MONGODB_DB
 
 export async function POST(request: NextRequest) {
 	const data: Club = await request.json()
@@ -26,6 +25,7 @@ export async function POST(request: NextRequest) {
 	) {
 		return new NextResponse(
 			JSON.stringify({
+				status: 400,
 				message: "Not all required fields are provided",
 			}),
 			{
@@ -40,6 +40,7 @@ export async function POST(request: NextRequest) {
 	if (!uri) {
 		return new NextResponse(
 			JSON.stringify({
+				status: 400,
 				message: "MongoDB URI not provided",
 			}),
 			{
@@ -54,6 +55,7 @@ export async function POST(request: NextRequest) {
 	if (!dbName) {
 		return new NextResponse(
 			JSON.stringify({
+				status: 400,
 				message: "MongoDB DB name not provided",
 			}),
 			{
@@ -68,6 +70,7 @@ export async function POST(request: NextRequest) {
 	if (!data) {
 		return new NextResponse(
 			JSON.stringify({
+				status: 400,
 				message: "No data provided",
 			}),
 			{
@@ -90,10 +93,11 @@ export async function POST(request: NextRequest) {
 		if (!result.insertedId)
 			return new NextResponse(
 				JSON.stringify({
+					status: 400,
 					message: "Club not created",
 				}),
 				{
-					status: 500,
+					status: 400,
 					headers: {
 						"content-type": "application/json",
 					},
@@ -102,6 +106,7 @@ export async function POST(request: NextRequest) {
 
 		return new NextResponse(
 			JSON.stringify({
+				status: 201,
 				message: "Club created successfully",
 				insertedId: result.insertedId,
 			}),
@@ -115,10 +120,11 @@ export async function POST(request: NextRequest) {
 	} catch (e) {
 		return new NextResponse(
 			JSON.stringify({
+				status: 400,
 				message: "Error creating club",
 			}),
 			{
-				status: 500,
+				status: 400,
 				headers: {
 					"content-type": "application/json",
 				},

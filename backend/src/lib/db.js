@@ -1,9 +1,10 @@
 "use server"
 import { MongoClient } from "mongodb"
 
+const uri = process.env.MONGODB_URI
+
 export async function getDatabase() {
-	const MONGODB_URI = "mongodb://bmedvedec:lozinka@mongo:27017/orlabDB?authSource=admin"
-	const client = await MongoClient.connect(MONGODB_URI)
+	const client = await MongoClient.connect(uri)
 
 	try {
 		await client.connect()
@@ -13,7 +14,6 @@ export async function getDatabase() {
 		const data = await collection.find({}).toArray()
 		return JSON.stringify(data)
 	} catch (error) {
-		console.log(error)
 		throw error
 	}
 }
